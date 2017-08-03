@@ -1,0 +1,1185 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>北京市企业信用信息网 - </title><!-- xygs-gsmd.jsp -->
+		<script type="text/javascript" src="/js/credit/jsp-control.js"></script>
+		<script type="text/javascript" src="/js/ajax/http.js" ></script>
+		<link href="/css/bj-xin-j2cx.css" rel="stylesheet" type="text/css" />
+		<link href="/css/indexnewcss/er-tou.css" rel="stylesheet" type="text/css" />
+		<link href="/css/indexnewcss/zuo.css" rel="stylesheet" type="text/css" />
+		<link href="/css/lhgs.css" rel="stylesheet" type="text/css" />
+		<link href="/css/indexnewcss/x-sou.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			#innerTable td{height:30px;}
+		</style>
+		
+		<script type="text/javascript" src="/js/credit/page.js"></script>
+		<script type="text/javascript">
+			var issue_date = '';
+			var vchr_bmmc = '';
+			var party_kind = '';
+			var s;
+			var DD = "";
+			if('' == 'true'){
+				DD = true;
+			}
+			
+				//查询 
+		function query(issue_date,vchr_bmmc,party_kind,num){
+			var url ="";
+			
+						url = "newChange/newChangeAction!gsmd_list.dhtml?issue_date="+issue_date+"&vchr_bmmc="+vchr_bmmc+"&flag=true&DD="+DD+"&flag_num=2&party_kind="+party_kind;
+				
+			window.location.href = url;	
+		}
+		
+		function show(){
+          	document.getElementById("message").style.display="block";
+        }
+		function hidden(){
+          	document.getElementById("message").style.display="none";
+        }
+        //回显
+		function fnload(){
+			
+			
+			if(''=='true'){
+				var data = document.getElementsByTagName("p");
+				var data_ = document.getElementsByTagName("span");
+				if('' == ""){
+					if(document.getElementById("p")) document.getElementById("p").style.color = "red"
+				}else{
+					for(var i=0;i<data.length;i++){
+					if(data[i].value==''){
+							data[i].style.color = "red";
+						}else{
+							data[i].style.color = "";
+						}	
+					}
+				}
+				
+				
+					if('' == ""){
+						document.getElementById("span").style.color = "red"
+					}else{
+						for(var i=0;i<data_.length;i++){
+							if(data_[i].value==''){
+									data_[i].style.color = "red";
+							}else{
+									data_[i].style.color = "";
+								}
+							}
+						}
+					if('' == ""){
+						document.getElementById("span").style.color = "red"
+					}else{
+						for(var i=0;i<data_.length;i++){
+							if(data_[i].value==''){
+									data_[i].style.color = "red";
+							}else{
+									data_[i].style.color = "";
+								}
+							}
+						}
+					}
+					
+				
+				if(''=='true'){
+					document.getElementById("message").style.display="block";
+					document.getElementById("yc").style.display="block";
+					document.getElementById("zs").style.display="none";
+				}else if(''=='false'){
+					document.getElementById("message").style.display="none";
+				}
+				
+				
+				var num = "";
+				if(num!=""){
+					openShow("p1","p2","splblist_three","splblist");
+				}
+				
+			}
+			
+		//按时间
+		function fnQuery(id,obj,num){
+			var url = "";
+			var data = document.getElementsByTagName("p");
+			for(var i=0;i<data.length;i++){
+			 	if(data[i]==obj){
+						obj.style.color = "red";
+				}else{
+						data[i].style.color = "#333";
+					}
+				}
+					var bm=vchr_bmmc;
+					var pk=party_kind;
+					query(id,bm,pk,num)
+			}
+		//按处罚类别
+		function fnQueryleibie(id,obj,num){
+			var data = document.getElementsByTagName("p");
+			
+			for(var i=0;i<data.length;i++){
+			 	if(data[i]==obj){
+						obj.style.color = "red";
+				}else{
+						data[i].style.color = "#333";
+					}
+				}
+				
+				var bm=vchr_bmmc;
+					var idt=issue_date;
+				query(idt,bm,id,num)
+				
+			}
+		//按部门	
+		function fQuery(id,obj,num){
+			var data = document.getElementsByTagName("span");
+				for(var i=0;i<data.length;i++){
+				if(data[i]==obj){
+					obj.style.color = "red";
+				}else{
+						data[i].style.color = "";
+					}
+				}
+					var idt=issue_date;
+					var pk=party_kind;
+				query(idt,id,pk,num)
+			
+		}
+	    function zs(){
+	          window.clearTimeout(s);
+	          document.getElementById("yc").style.display="block";
+	          document.getElementById("zs").style.display="none";
+	          s=window.setTimeout("show();",100);
+	          DD = true;
+		}
+		function yc(){
+	          window.clearTimeout(s);
+	          document.getElementById("zs").style.display="block";
+	          document.getElementById("yc").style.display="none";
+	          s=window.setTimeout("hidden();",100);
+	          DD = false;
+		}
+
+			
+			
+			
+			
+			//这个就是键盘触发的函数  
+			 var SubmitOrHidden = function(evt){ 
+			     evt = window.event || evt;  
+			     if(evt.keyCode==13){//如果取到的键值是回车  
+			        if(!checkQwjs()){
+			       		return false;
+			        }
+			      }  
+			 }  
+			 window.document.onkeydown=SubmitOrHidden;//当有键按下时执行函数  
+			 
+			 function chaXunByTj(){
+				if(document.getElementById('entNameAddress').value=='请输入商品名称或标称生产单位'){
+					alert("请输入商品名称或标称生产单位");
+					return false;
+				}
+				document.getElementById('chaxunFrom').submit();
+			}
+			
+			
+			function chaXunByJs(){
+				if(document.getElementById('entNameAddress').value=='请输入商品名称或标称生产单位'){
+					alert("请输入商品名称或标称生产单位");
+					return false;
+				}
+				document.getElementById('chaxunFrom').submit();
+			}
+			
+			function chaXunByEnt(){
+				if(document.getElementById('entNameAddress').value=='请输入企业名称或者注册号'){
+					alert("请输入企业名称或者注册号");
+					return false;
+				}
+				document.getElementById('chaxunFrom').submit();
+			}
+			
+			function returnValue(){
+				var entNameAddress = "";
+				if(entNameAddress!=""){
+					document.getElementById('entNameAddress').value=entNameAddress;
+				}
+			}
+			
+			function openShow(p1,p2,splblist_three,splblist){
+				document.getElementById(p1).style.display="none";
+				document.getElementById(p2).style.display="block";
+				document.getElementById(splblist_three).style.display="none";
+				document.getElementById(splblist).style.display="block";
+			}
+			
+			function openHide(p1,p2,splblist_three,splblist){
+				document.getElementById(p1).style.display="block";
+				document.getElementById(p2).style.display="none";
+				document.getElementById(splblist_three).style.display="block";
+				document.getElementById(splblist).style.display="none";
+			}
+		</script>
+	</head>
+	
+	<body  onload = "fnload();returnValue();"  style="background:#fff;width:100%;">
+	
+	<div class="er-tou">
+		
+
+
+
+
+
+
+
+
+
+
+<Script Language="JScript" for="window" event="OnLoad">
+			fnload();returnValue();
+			function GetList(strListID) {
+				var strTemp;
+				var strTemp_pnp;
+				var strOption;
+				var len;
+				var strName;
+				var strUniqueID;
+				var objListID = eval(strListID);
+			
+				EnumUsbKey();
+				strTemp_pnp =  getUserList_pnp();
+				while (1) {
+					i=strTemp_pnp.indexOf("&&&");
+					if (i <= 0) {
+						break;
+					}
+					strOption = strTemp_pnp.substring(0,i);
+					strName = strOption.substring(0, strOption.indexOf("||"));
+					strUniqueID = strOption.substring(strOption.indexOf("||") + 2, strOption.length);
+					var objItem = new Option(strName,strUniqueID)
+					objListID.add(objItem);
+					len = strTemp_pnp.length;
+			        strTemp_pnp = strTemp_pnp.substring(i+3,len);
+				}
+				var objListID = null;
+			}
+			GetList("LoginForm.UserList");
+		</Script>
+		
+		<SCRIPT FOR="USBKEY" EVENT="OnUSBKeyChange" LANGUAGE="javascript">
+			//响应key 插拔动作
+			//alert("OnUSBKeyChange");
+			function ChangeList(strListID) {
+				
+				var strTemp;
+				var strTemp_pnp;
+				var strOption;
+				var len;
+				var strName;
+				var strUniqueID;
+				
+				var objListID = eval(strListID);
+				
+				var i;
+				var n = objListID.length;
+				for(i=0;i<n;i++)
+					objListID.remove(0);
+				 
+				strTemp_pnp =  getUserList_pnp();
+				while (1) {
+					i=strTemp_pnp.indexOf("&&&");
+					if (i <= 0) {
+						break;
+					}
+					strOption = strTemp_pnp.substring(0,i);
+					strName = strOption.substring(0, strOption.indexOf("||"));
+					strUniqueID = strOption.substring(strOption.indexOf("||") + 2, strOption.length);
+					var objItem = new Option(strName,strUniqueID)
+					objListID.add(objItem);
+					len = strTemp_pnp.length;
+			    	strTemp_pnp = strTemp_pnp.substring(i+3,len);
+				}
+				var objListID = null;
+			}
+			
+			ChangeList("LoginForm.UserList");
+			
+	
+		</SCRIPT>
+		
+	<script type="text/javascript">
+		function GSU(url){
+			window.open(url, "_blank", "height=340,width=524px,top=100,left=500,toolbar=no,menubar=no,scrollbars=yes, resizable=yes,location=no, status=no");
+		}
+	</script>
+
+<script type="text/javascript" src="/js/ajax/jquery-1.7.2.min.js"></script><!-- jquery.js -->
+
+	<script type="text/javascript">
+		function getLogon(caid, gsid,obj){
+        	document.getElementById(caid).style.display = "";
+        	document.getElementById("span1").style.backgroundColor = "";
+        	document.getElementById("span2").style.backgroundColor = "";
+        	document.getElementById(gsid).style.display = "none";
+        	obj.style.backgroundColor="#eee";
+        }
+        /**
+         * 新tab也 的立即注册
+         *  // 2014-03-01  begin  修正 企业信用
+         * @return {TypeName} 
+         */ 
+		function forRegEntJspErtou(){
+            showDialog("/index/indexnew/bzjs/zbxxlc.jsp","","800");
+			var url =  "/login/loginAction!forRegEntJsp.dhtml";
+			window.location.href = url;
+			
+		}
+		
+         
+         
+          /**
+         * 新tab也 的忘记密码
+         *  // 2014-03-01  begin  修正 企业信用
+         * @return {TypeName} 
+         */ 
+		function findRegEntJsp(){
+			var url =  "/login/loginAction!findRegEntJsp.dhtml";
+			window.location.href = url;
+			
+		}
+         
+         
+	
+		function GS_LoginForm_onsubmit(){
+			var qy_username = document.getElementById("qy_username").value;
+			var qy_password = document.getElementById("qy_password").value;
+			if(qy_username==""){
+				document.getElementById("qy_username").focus();
+				alert("公司登录账号不能为空！");
+				return false;
+			}
+			if(qy_password==""){
+				document.getElementById("qy_password").focus();
+				alert("公司登录密码不能为空！");
+				return false;
+			}
+			
+			//验证输入的验证码是否正确
+			var url= "/login/loginAction!GS_Login.dhtml?qy_username="+encodeURIComponent(qy_username)+"&qy_password="+qy_password;
+			var cnum = "&random="+Math.ceil(Math.random()*100000);
+			$.ajax({
+			   type:"post",    
+			   url:url+cnum,    
+			   dataType:"text",
+			   success:function(data){
+			   		if("qy_username" == data){
+			   			alert("公司登录账号不能为空");
+			   		}
+			   		else if("qy_password" == data){
+			   			alert("公司登录密码不能为空");
+			   		}
+			   		else if("fail" == data){
+			   			alert("登录信息有误，请重新登录");
+			   			window.location.href = "/index.jsp";
+			   		}
+			   		else if("true" == data){
+			   			window.location.href = "/login/loginAction!GS_Index.dhtml";
+			   		}else{
+			   			alert("访问异常，请通过正常途径登录");
+			   		}
+			   }    
+			}); 
+		}
+			
+         function showDialog(url, windowname, height){
+		 	if(height == undefined){ height = "768px";}
+		 	window.open(url, "_blank", "height="+height+",width=1024px,top=0,left=0,toolbar=no,menubar=no,scrollbars=yes, resizable=yes,location=no, status=no"); 
+		}
+	</script>
+	
+
+<script type="text/javascript" src="/js/credit/index-control-new.js"></script>
+<script type="text/javascript" src="/js/credit/login.js" ></script>
+<script type="text/javascript" src="/index/indexnew/js/isCar.js"></script>
+<link href="/css/css_new/deng.css" rel="stylesheet" type="text/css" />
+<div class="er-tou">
+<div class="h-nav">
+  <div class="h-nav-1"  id="xy_titleid">
+    <ul> 
+		<!-- 外网发布，此处注释掉   目前年报尚未上线 2014-07-04  当前页面为外网页面所有，无需判断内外网-->
+        <li><a href="javascript:void(0)" id="qyxy" onclick="QueryIndexColor('qyxy');">企业信用</a></li>
+        <li><a href="javascript:void(0)" id="qyxy_scztdj" onclick="QueryIndexColor('qyxy_scztdj');">企业登记</a></li>
+        <!-- onclick="QueryIndexColor('jyycml');" -->
+        <li><a href="javascript:void(0)" id="jyycml" onclick="QueryIndexColor('jyycml');">经营异常名录</a></li>
+        <li><a href="javascript:void(0)" id="wzjy" onclick="QueryIndexColor('wzjy');">无照经营查处</a></li>
+        <li><a href="javascript:void(0)" id="bhgsp" onclick="QueryIndexColor('bhgsp');">商品服务质量</a></li>
+        <li><a href="javascript:void(0)" id="hmd" onclick="QueryIndexColor('hmd');">任职限制</a></li>
+        <!-- 外网发布，此处注释掉 -->
+        <li><a href="javascript:void(0)" id="nsxy" onclick="QueryIndexColor('nsxy')">纳税信用</a></li><!-- er-tou.jsp -->
+
+        <li><a href="javascript:void(0)" id="sfxz" onclick="QueryIndexColor('sfxz')">司法协助</a></li>
+    </ul>
+  </div>
+   
+  <div class="h-nav-2" >
+     
+	    <form method="post" ID="LoginForm" action="/index/cas_login.jsp"  onsubmit="return LoginForm_onsubmit()">
+		<input type="hidden" name="forwardType" value="index" />
+    
+    <ul>
+      <li> 
+      	  <a href="#"><span  onmouseover="showLoginDivPotal('showLoginDiv');return false;" style="cursor:pointer;font-size:14px">登录</span></a>
+	      <p id="pshowLoginDiv" style="height:50px;width:90px;position:absolute;top:0;left:70%;" onMouseOut="DisplayLoginDiv('showLoginDiv');return false;" onMouseOver="showLoginDivPotal('showLoginDiv');return false;"></p>
+	   	 	
+      			 <p id="pshowLoginDiv" style="height:50px;width:90px;position:absolute;top:0;left:70%;" onMouseOut="DisplayLoginDiv('showLoginDiv');return false;" onMouseOver="showLoginDivPotal('showLoginDiv');return false;"></p>
+      			<div class="deng" id="showLoginDiv" style="_margin-top:20px;*margin-top:20px;display:none;background:url(/images/imges_new/home-d1.gif) no-repeat;z-index:999999" onMouseOut="DisplayLoginDiv('showLoginDiv');return false;" onMouseOver="showLoginDivPotal('showLoginDiv');return false;">
+				  <div class="cha-zi"><a href="javascript:void(0);" onclick="noneLoginColose('showLoginDiv');return false;"><img src="/images/imges_new/home-d2.gif" /></a></div>
+				   <div style="margin-top:15px;text-align:left;padding-left:15px;">
+				   <!-- <span style="cursor:hand;font-size:14px;" id="span2" onclick="getLogon('gs_login', 'ca_login',this)">公司用户登录</span> -->
+				  	<span style="cursor:hand;font-size:14px;background-color:#eee" id="span1" onclick="getLogon('ca_login', 'gs_login',this)">协会用户CA证书登录</span>
+				  	
+				  </div>
+				    <!-- 公司用户登录，此处是用style="display:none" 进行控制 -->
+				   <div class="d-nei00" id="gs_login" style="display:none" >
+					    <div class="d-nei01">
+					   		   登录名：<input type="text" name="qy_username" id="qy_username" size="10" style="width:170px;" />
+					    </div>
+					    <div class="d-nei01">
+					    	  密&nbsp;&nbsp;&nbsp;码：<input type="password" name="qy_password" id="qy_password" size="10" style="width:170px" />
+					    </div>
+					    <div style="text-align:center;padding-left:75px;">
+					    	<input type="button"  onclick="GS_LoginForm_onsubmit()" value="" name="B1" style="background:url(/images/imges_new/home-d3.jpg) no-repeat;height:32px;width:67px;cursor:hand;float:left;"/>
+					    	<span style="float:left;margin:0;padding:0;">&nbsp;&nbsp;<a onclick="forRegEntJspErtou()" style="cursor:hand">立即注册</a>&nbsp;&nbsp;<a onclick="findRegEntJsp()" style="cursor:hand">忘记密码</a> </span>
+					    	<p style="clear:both;"/>
+				    	</div>
+				  </div>
+				  <!-- 协会用户CA证书登录，此处是用style="display:none" 进行控制 -->
+				  <div class="d-nei00" id="ca_login" >
+				    <div class="d-nei01">
+				      <select id="UserList" name="userName"></select>
+				    </div>
+				    <div class="d-nei01">
+				      <input type="password" name="pwd1" id="UserPwd" size="20" value="123456" />
+				    </div>
+				    <div style="text-align:right;">
+				    	<input type="button"  onclick="LoginForm_onsubmit()" value="" name="B1" style="background:url(/images/imges_new/home-d3.jpg) no-repeat;height:32px;width:67px;cursor:hand;float:left;margin-left:80px;"/>
+				    	<a href="/mobile_client/证书应用环境.exe" style="float:right">&nbsp;&nbsp;下载证书应用环境</a>
+				    </div>
+				  </div>
+				 
+				</div>
+      		
+      </li>
+      
+   	  <li><a href="/simple/dealSimpleAction!transport_ww.dhtml">首页</a></li>
+     
+    </ul>
+    </form>
+  </div>
+   
+</div>
+
+<div class="er-logo" style="background:url(/images/imges_new/cha2-logo-0.jpg) no-repeat right top;">
+ 
+   <div class="er-logo-1"><a href="/simple/dealSimpleAction!transport_ww.dhtml" hidefocus="true"><img src="/images/indexnewimages/h-logo.jpg" /></a></div>
+   		<input type="hidden" ID="UserSignedData" name="UserSignedData" />
+	    <input type="hidden" ID="UserCert" name="UserCert" />
+	    <input type="hidden" ID="ContainerName" name="ContainerName" />
+   
+  
+</div>
+</div>
+
+<script language="javascript">
+	function QueryIndexColor(id){
+			var queryStr = '请输入查询关键字（如企业名称、地址、法定代表人姓名等）'
+			$("#xy_titleid a").each(function(i,val) {
+				var otherId = val.id;
+				if(id==val.id){
+					//document.getElementById(id).style.color="red";
+					$("#"+id).css("color","red");
+				 
+						
+							window.location.href="/simple/dealSimpleAction!transport_ww.dhtml?id="+id;
+						
+					 
+				}
+			}); 
+			
+		}
+</script>
+
+
+		<script language="JavaScript" src="/js/cas/SecX_Common.js"></script>
+		<SCRIPT ID="clientEventHandlersJS" LANGUAGE="javascript">
+			<!--
+			var strServerSignedData = "GRMDDH8oLNZp2BQhP9y+p5yYn7lf3bpl8i88XFv6VuM6Y5aGzfB9M2dwc1i+USrxvj9ETB/kpuMczcQPzm4zi8D9YRzHo33wMHU+dDPjYeepRiD/HSoJqW/H7ago2vyojjnylwUD9plAComEgSXvZ9rVLo4hpIlopuBH/io2qc0=";
+			var strServerRan = "ge8BQuH22FSZwpUy+gsRyn46DPLESYW9";
+			var strServerCert = "null";
+			function LoginForm_onsubmit() {
+				
+				try{
+					var obj=USBKEY
+					USBKEY.getUserList();
+				}catch(e){
+					alert("没有正确安装证书应用环境或者证书应用环境已经损坏！");
+					return false;
+				}
+				
+				var ret;
+				var strContainerName = LoginForm.UserList.value;
+				var strPin = LoginForm.UserPwd.value;
+				ret = Login(LoginForm,strContainerName,strPin);
+				LoginForm.UserPwd.value = "";
+				if(ret){
+					document.getElementById("LoginForm").submit();
+				}
+				return ret;
+			}
+			//-->
+		</SCRIPT>
+		
+	
+
+
+
+
+ 
+		<div class="er-dang" style="text-align:left;">当前位置<span style="font-family: Arial, '黑体', Georgia, 'Hiragino Keku Gothic Pro'; font-size: 12px;">
+		&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;
+				信用公示&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;
+					
+						警示信息&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;行政处罚信息
+					
+			</span>
+		</div>
+	</div>
+	<div class="er-tou">
+	<!-- 统一的左侧列表  提取出来，这样就防止修改的时候，修改多个文件  2014-10-24 wjy -->
+	
+
+<script type="text/javascript" src="/country_credit/bj/javascript/jquery-1.9.1.js"></script><!-- 1.9版本jQuery js   -->
+<script type="text/javascript">
+	
+	$(function() {
+	     var flag_num1 = $('#hone').val();
+	     if(flag_num1 == "36" || flag_num1 == "35" || flag_num1 == "34" || flag_num1 == "37" || flag_num1 == "38" || flag_num1 == "5"){
+	        $("#content").slideDown("fast");
+			$("#toggle").text("-");
+		 	$("#zuo_1").attr("style","height:930px");
+			$("#zuo_2").attr("style","height:870px");
+			$("#min").attr("style","min-height:880px;height:auto;float:left;");
+	     }
+
+		$("#toggle").click(function(){
+			if($("#content").is(":hidden")){
+				$("#content").slideDown("slow");
+				$(this).text("-");
+				$("#zuo_1").attr("style","height:930px");
+				$("#zuo_2").attr("style","height:870px");
+				$("#min").attr("style","min-height:880px;height:auto;float:left;");
+			}else{
+				$("#content").slideUp("slow");
+				$(this).text("+");
+				$("#zuo_1").attr("style","height:743px");
+				$("#zuo_2").attr("style","height:683px");
+				$("#min").attr("style","min-height:693px;height:auto;float:left;");
+			}
+		});
+		
+	});
+	
+</script>
+	<div style="min-height:693px;height:auto;float:left;" id="min">
+		<div class="zuo"><!-- 31 -->
+		<input type="hidden" value=2 id="hone">
+		
+			  <div class="zuo-1" style="height:560px;" id="zuo_2">
+			 
+			 <ul >
+		       <li>
+		      	<a href="/newChange/newChangeAction!gsmd_list.dhtml?clear=true&flag_num=2"  style="text-align:left;padding-left:1px;">
+		      		<div style="color:red;">警示信息</div>
+		      	</a>
+		      </li>
+		       <li>
+		      	<a href="/newChange/newChangeAction!gsmd_list.dhtml?clear=true&flag_num=2" style="background:none;padding-left:4px;">
+		      		<div style="color:#f60;">行政处罚信息&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		      	</a>
+		      </li>
+		       <li>
+		      	<a href="/newChange/newChangeAction!wzjycc_list.dhtml?clear=true&flag_num=22&flag=wzjycc&instype=1" style="background:none;">
+		      		<div >无照经营查处&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		      	</a>
+		      </li>
+		       <li>
+		      	<a href="/newChange/newChangeAction!qtxzcfxx_list.dhtml?clear=true&flag_num=21&flag=qtxzcfxx&instype=1" style="background:none;padding-left:4px;">
+		      		<div >其他行政处罚信息</div>
+		      	</a>
+		      </li>
+		      <li>
+		      	<a href="/newChange/newChangeAction!jyycml_list.dhtml?clear=true&flag_num=17&blsfxx=jyycml" style="background:none;">
+		      		<div >经营异常名录&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		      	</a>
+		      </li>
+		      <li>
+		      	<a href="/newChange/newChangeAction!fdcjg_list.dhtml?clear=true&flag_num=56&blsfxx=bfbfdc" style="background:none;margin-left:-25px;">
+		      		<div >被关停房地产经纪机构</div>
+		      	</a>
+		      </li>
+		       <li>
+			      	 	<a href="/newChange/newChangeAction!gsmd_list.dhtml?clear=true&flag_num=5&blsfxx=blsfxx" style="background:none;padding-left:4px;">
+			      		 	<div >不良司法信息&nbsp;&nbsp;&nbsp;</div>
+			      	 	</a>
+			         </li>
+		      
+		      
+		      <!-- xupf-s flag_num待定-->
+		      <!-- li>
+		      	<a href="/newChange/newChangeAction!gsmd_list.dhtml?clear=true&flag_num=15&blsfxx=yzwfqy" style="background:none;padding-left:4px;">
+		      		<div >严重违法企业名单</div>
+		      	</a>
+		      </li-->
+		      <!-- xupf-e -->
+		      <li>
+		     	<a href="/newChange/newChangeAction!xygs_ts.dhtml?clear=true&flag_num=1" style="text-align:left;padding-left:1px;">
+		      		<div >提示信息</div>
+		      	</a>
+		      </li>
+		      <li>
+		     	<a href="/newChange/newChangeAction!xygs_ts.dhtml?clear=true&flag_num=1"  style="background:none;padding-left:4px;">
+		      		<div >商品服务质量信息</div>
+		      	</a>
+		      </li>
+		      
+		     <li>
+		      	<a href="/newChange/newChangeAction!sfxz_list.dhtml?clear=true&flag_num=16&blsfxx=sfxz" style="background:none;">
+		      		<div >司法协助股权冻结</div>
+		      	</a>
+		      </li> 
+		      <li>
+		      	<a href="/newChange/newChangeAction!ccjc_list.dhtml?clear=true&flag_num=18&flag=ccxx&instype=1" style="background:none;">
+		      		<div >随机抽查信息公示&nbsp;</div>
+		      	</a>
+		      </li>
+		      <li>
+		     	<a href="/xygs/xygsAction!xftsxxgsbList.dhtml?clear=true&flag_num=25"  style="background:none;padding-left:4px;">
+		      		<div >消费投诉信息公示</div>
+		      	</a>
+		      </li>
+		       <li>
+		     	<a href="/newChange/newChangeAction!selectComplain.dhtml?clear=true&flag_num=26&flag=complain&instype=1"  style="background:none;padding-left:4px;">
+		      		<div >预付卡消费投诉信息</div>
+		      	</a>
+		      </li>
+		      
+		      
+		     <li>
+		      	<a href="/xygs/xygsAction!xygs_xkzz.dhtml?clear=true&flag_num=7" style="text-align:left;padding-left:1px;">
+		      		<div >许可资质信息</div>
+		      	</a>
+		      </li>
+		      <li>
+		      	<a href="/newChange/newChangeAction!xygs_lh.dhtml?clear=true&flag_num=3" style="text-align:left;padding-left:1px;">
+		      		<div >良好信息</div>
+		      	</a>
+		      </li>
+		       <li>
+		      	<a href="/newChange/newChangeAction!xygs_xh.dhtml?clear=true&flag_num=4" style="text-align:left;padding-left:1px;">
+		      		<div >协会信息</div>
+		      	</a>
+		      </li>
+		      
+		       <li>
+		     	 	<a href="/xygs/xygsAction!xygsFdcList.dhtml?clear=true&flag_num=10&fdc=wbaxx" style="text-align:left;padding-left:1px;">
+		      		<div  >行业信用信息</div>
+		      	</a>
+		      </li>
+		      <!-- 
+		      <li>
+		     	 	<a href="/xygs/xygsAction!xygsFdcList.dhtml?clear=true&flag_num=10&fdc=wbaxx"  style="background:#f7f7f0;padding-left:4px;">
+		      		<div >房地产经纪机构&nbsp;&nbsp;</div>
+		      	</a>
+		      </li>  
+		        
+			  <li>
+		      	<a href="/xygs/xygsAction!xygsFdcList.dhtml?clear=true&flag_num=14&fdc=mcycbg"  style="background:none;padding-left:8px;">
+		      		<div >名称异常变更&nbsp;</div>
+		      	</a>
+		      </li> 
+		       <li>
+		      	<a href="/xygs/xygsAction!xygsFdcList.dhtml?clear=true&flag_num=13&fdc=xzcf"  style="background:none;padding-left:8px;">
+		      		<div >违法机构信息&nbsp;&nbsp;</div>
+		      	</a>
+		      </li>
+		       <li>
+		      	<a href="/xygs/xygsAction!xygsFdcTsjbList.dhtml?clear=true&flag_num=11&fdc=tsjb"  style="background:none;padding-left:8px;">
+		      		<div >被投诉机构信息</div>
+		      	</a>
+		      </li>
+		        <li>
+		      	<a href="/xygs/xygsAction!xygsFdcList.dhtml?clear=true&flag_num=12&fdc=cwxl"  style="background:none;padding-left:8px;">
+		      		<div >查无下落机构&nbsp;&nbsp;</div>
+		      	</a>
+		      </li>
+		       <li>
+		      	<a href="/xygs/xygsAction!xygsFdcList.dhtml?clear=true&flag_num=10&fdc=wbaxx"  style="background:none;padding-left:8px;">
+		      		<div >未备案机构信息</div>
+		      	</a>
+		      </li>-->
+		       <li>
+		     	 	<a href="/newChange/newChangeAction!dsxzcf_list.dhtml?clear=true&flag_num=33"  style="background:#f7f7f0;padding-left:1px;">
+		      			<div>电商信用&nbsp;&nbsp;</div>
+		      		</a>
+		      </li> 
+		       <li>
+		      		<a href="/newChange/newChangeAction!dsxzcf_list.dhtml?clear=true&flag_num=33"  style="background:none;padding-left:8px;">
+		      			<div >行政处罚信息&nbsp;&nbsp;</div>
+		      		</a>
+		     	 </li>
+		    </ul>
+		 </div>
+		</div>
+	</div>
+	
+	
+  
+	<div class="bx1" style="margin-left:1px;height:auto;width:770px;float:left;">
+	
+		
+			<table style="width:780px" cellspacing="0">
+				<tr>
+					<td class="cx00" style="text-align:left;font-weight:bold;font-size:14px;width:60px;">
+						时间：
+					</td>
+					<td class="cx00" style="text-align:left;">
+						<p style="color:red;cursor:pointer;" id="p" onclick="fnQuery('',this,1);" value="所有">所有</p>
+					</td>
+					<td class="cx00" style="text-align:left;padding-left:10px;">
+						<p style="cursor:pointer;"  onclick="fnQuery('2017',this,1);" value="2017">2017年</p>
+					</td>
+					<td class="cx00" style="text-align:left;padding-left:10px;">
+						<p style="cursor:pointer;"  onclick="fnQuery('2016',this,1);" value="2016">2016年</p>
+					</td>
+					<td class="cx00" style="text-align:left;padding-left:10px;">
+						<p style="cursor:pointer;"  onclick="fnQuery('2015',this,1);" value="2015">2015年</p>
+					</td>
+					<td class="cx00" style="text-align:left;padding-left:10px;">
+						<p style="cursor:pointer;"  onclick="fnQuery('2014',this,1);" value="2014">2014年</p>
+					</td>
+				</tr>
+			</table>
+	
+	
+	<div style="width:770px;">
+	 <span style="text-align:left;font-weight:bold;font-size:14px;float:left;">部门：</span>
+	 
+	 <table style="width:650px;float:left;" cellspacing="0" border='0' id="splblist_three">
+		<tr>
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="0000"  onclick="fQuery('0000',this,'');">所有</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110301"  onclick="fQuery('110301',this,'');">市工商局</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110307"  onclick="fQuery('110307',this,'');">市公安局</span>
+				</td>
+	
+					
+				<tr/>
+			
+		</tr>
+	
+	</table>
+	
+	
+	<table style="width:650px;display:none;float:left;" cellspacing="0" border='0' id="splblist" >
+		<tr>
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="0000"  onclick="fQuery('0000',this,'1');">所有</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110301"  onclick="fQuery('110301',this,'2');">市工商局</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110307"  onclick="fQuery('110307',this,'3');">市公安局</span>
+				</td>
+	
+					
+				<tr/>
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110327"  onclick="fQuery('110327',this,'4');">市环保局</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110330"  onclick="fQuery('110330',this,'5');">市水务局</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110336"  onclick="fQuery('110336',this,'6');">市安全监管局</span>
+				</td>
+	
+					
+				<tr/>
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110383"  onclick="fQuery('110383',this,'7');">市城管执法局</span>
+				</td>
+	
+			
+				<td class="cx00" style="text-align:left;width:12%;padding-left:65px;">
+					<span style="cursor:pointer;width:130px;"  value="110392"  onclick="fQuery('110392',this,'8');">市食品药品监管局</span>
+				</td>
+	
+			
+		</tr>
+	</table>
+	
+	<div style="float:left;">
+		<span  id="p1"><img src="/images/san-j-6.jpg" style="float:right;" onclick="openShow('p1','p2','splblist_three','splblist');return false;"/></span>
+		<span  id="p2" style="display:none;"><img src="/images/san-j-7.jpg" style="float:right;" onclick="openHide('p1','p2','splblist_three','splblist');return false;"/></span>
+	</div>
+	<p style="clear: both;"/>
+	
+	</div>
+	
+	<!-- 处罚类别：企业      自然人 -->
+	<table style="width:780px" cellspacing="0">
+		<tr>
+			<td class="cx00" style="text-align:left;font-weight:bold;font-size:14px;width:80px;">
+				处罚类别：
+			</td>
+			<td class="cx00" style="text-align:left;">
+				<p style="color:red;cursor:pointer;" id="p" onclick="fnQueryleibie('',this,'p')" value="">所有</p>
+			</td>
+			<td class="cx00" style="text-align:left;padding-left:10px;">
+				<p style="cursor:pointer;" id="qy"  onclick="fnQueryleibie('qy',this,'qy')" value="qy">企业</p>
+			</td>
+			<td class="cx00" style="text-align:left;padding-left:10px;">
+				<p style="cursor:pointer;" id="zrr"  onclick="fnQueryleibie('zrr',this,'zrr')" value="zrr">自然人</p>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	
+	
+	
+	
+		<form action="/newChange/newChangeAction!gsmd_list.dhtml?styleFlag=xygs&flagChaxun=flagChaxun&clear=true&flag_num=2&flag=true&issue_date=&vchr_bmmc=&num=" method="post" id="chaxunFrom" style="width:807px;">
+			    
+                            <div class="x-sou" style="background-image: url(/images/indexnewimages/san-j-10.jpg);width:378px;float:right;">
+			     
+                            <table width="380" border="0" cellspacing="0" cellpadding="0" >
+			    <tr>
+			      <td class="s-1" width="286"  style="border:none;">
+			      <input type="text" class="off" name="entNameAddress" id="entNameAddress" style="background:none;float:left;height:30px;line-height:30px;" 
+			      onclick="if(this.value==this.defaultValue)this.value=''; this.className='on'"
+			      onblur="if(this.value=='')this.value=this.defaultValue; this.className='off'" 
+			      value="请输入企业名称或者注册号"/>
+			          <!--请输入企业名称/注册号-->
+			      
+			      <img src="/images/indexnewimages/san-j-9.jpg" width="68" height="32" style="margin-left:-80px;cursor:pointer;" onclick="chaXunByJs();return false;"/>
+			      </td>
+			    </tr>
+			  </table>
+			</div>
+		</form>
+	<!-- xupf-s -->
+	
+		<!-- xupf-s -->
+		
+				<form action="" method="post" name="creditForm" id="creditForm" style="height:auto;">
+					<input type="hidden" name="entNameAddress" value="" />
+					<input type="hidden" name="issue_date" value="" />
+					<input type="hidden" name="vchr_bmmc" value="" />
+				
+					<input type="hidden" name="before_year_3" value="2014-07-28" />
+					<input type="hidden" name="issue_org_code" value="" />
+					<input type="hidden" name="deliv_date" value="" />
+					<input type="hidden" name="qy_ent_name" value="" />
+					<input type="hidden" name="qy_reg_no" value="" />
+					<input type="hidden" name="blsfxx" value="" />
+					<input type="hidden" name="num" value="" />
+					<input type="hidden" name="party_kind" value="" />
+				
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=A7A2222011534DB0843FB54306385FA9&chr_id=N0000000000000100000000709225925&info_type=040110&qy_reg_no=110111008034989', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">北京慧利鑫源医疗用品有限公司</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：91110111772594996A</td>
+							<td style="text-align:left;">处罚决定书文号：京工商房处字〔2017〕第291号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局房山分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=a1a1a1a024756ae1012494fa552510fa&chr_id=N0000000000000100000000709342935&info_type=040110&qy_reg_no=110111604047261', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">康金涛(北京市房山区西潞街道办事处康金涛粮油店)</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110111604047261</td>
+							<td style="text-align:left;">处罚决定书文号：京工商房良乡当处字〔2017〕第4号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局房山分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=a1a1a1a029b4ae960129b569adf953a8&chr_id=N0000000000000100000000709164756&info_type=040110&qy_reg_no=110106013025205', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">北京广汽长瑞汽车销售有限公司</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110106013025205</td>
+							<td style="text-align:left;">处罚决定书文号：京工商丰处字〔2017〕第616号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局丰台分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=4ADBEE0702184236BFB63EEB26BD548E&chr_id=N0000000000000100000000709342305&info_type=040110&qy_reg_no=110106603462449', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">王芳(北京嘉园里老家肉饼店)</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110106603462449</td>
+							<td style="text-align:left;">处罚决定书文号：京工商丰稽查二当处字〔2017〕第4号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局丰台分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=20e38b8b47a98da00147b3646f642fc1&chr_id=N0000000000000100000000709342269&info_type=040110&qy_reg_no=110106017693045', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">北京东方殿堂美容美发有限公司</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：91110106306556837N</td>
+							<td style="text-align:left;">处罚决定书文号：京工商丰稽查二当处字〔2017〕第5号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局丰台分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=20e38b8c399eefb801399f76af7c4a59&chr_id=N0000000000000100000000709223211&info_type=040110&qy_reg_no=110109015220008', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">北京满意达万家商贸有限公司</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110109015220008</td>
+							<td style="text-align:left;">处罚决定书文号：京工商门处字〔2017〕第186号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局门头沟分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=C493FF94FA7D46C69D736890D7001808&chr_id=N0000000000000100000000709343230&info_type=040110&qy_reg_no=110109600319786', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">吴秀明(北京江水河吴秀明客栈)</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110109600319786</td>
+							<td style="text-align:left;">处罚决定书文号：京工商门斋堂当处字〔2017〕第45号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局门头沟分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=47A930C67CA3426B9A029F74FE788C8D&chr_id=N0000000000000100000000709333965&info_type=040110&qy_reg_no=110228600421826', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">韦红亮(***经营者)</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110228600421826</td>
+							<td style="text-align:left;">处罚决定书文号：京工商密处字〔2017〕第621号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局密云分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=ff8080815728365001574b7d00e11835&chr_id=N0000000000000100000000709250663&info_type=040110&qy_reg_no=110228022062742', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">北京龙们尚学教育科技有限公司密云分公司</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：91110228MA008C8Y2M</td>
+							<td style="text-align:left;">处罚决定书文号：京工商密处字〔2017〕第623号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局密云分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+  					<table cellspacing="0" border=0 style="width: 790px;border:none;border-top:1px dashed #ccc;padding-top:10px;" id="innerTable">
+  						<tr>
+  							<td width="4%"></td>
+  							
+								<td colspan="2" style="text-align:left;"><span style="font-size:16px;color:blue;cursor:pointer" onclick="showDialog('/newChange/newChangeAction!cfxx_view.dhtml?reg_bus_ent_id=ff808081527dd52c0152809274d80d03&chr_id=N0000000000000100000000709331006&info_type=040110&qy_reg_no=110228604166227', '警示信息公示详细', '768px')" style="color:blue;font-size:16px;"><font style="font-size:16px;color:blue;text-decoration: underline;">孙成恩(北京恩泰鑫源五金商店经营者)</font></span></td>
+							
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;width:60%;">当事人注册号：110228604166227</td>
+							<td style="text-align:left;">处罚决定书文号：京工商密处字〔2017〕第624号</td>
+						</tr>
+						<tr>
+							<td width="4%"></td>
+							<td style="text-align:left;">办案机关：北京市工商行政管理局密云分局</td>
+							<td style="text-align:left;">公示时间：2017-07-27</td>
+						</tr>
+						
+					</table>
+				
+		   					
+					
+						<p style="text-align:center;">
+								第1页&nbsp;&nbsp;共13982页&nbsp;&nbsp;记录总数139817条&nbsp;&nbsp;每页显示<select name="SelectPageSize" id="SelectPageSize" onchange="jumppage(this.value, 'select_pageSize', '13982', 'true', '');return false"><option value="10" selected>10</option><option value="20" >20</option><option value="30" >30</option><option value="50" >50</option></select>条&nbsp;&nbsp;转到第&nbsp;&nbsp;<input type='text' name='EntryPageNo' id='EntryPageNo' value='1' style='width:30px;border:1px solid #777;' />&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" title="首页" style="vertical-align:bottom"  onclick="jumppage('1', 'click_pageforward', '13982', '', '');return false"><img src="/images/public/jin-home.png" border="0" /></a>&nbsp;&nbsp;<a href="javascript:void(0)" title="上一页" style="vertical-align:bottom" onclick="jumppage('0', 'click_pageforward', '13982', '', '');return false"><img src="/images/public/jin-before.png" border="0" /></a>&nbsp;&nbsp;<a href="javascript:void(0)" title="下一页" style="vertical-align:bottom"  onclick="jumppage('2', 'click_pageforward', '13982', '', '');return false"><img src="/images/public/jin-next.png" border="0" /></a>&nbsp;&nbsp;<a href="javascript:void(0)" title="尾页" style="vertical-align:bottom"  onclick="jumppage('13982', 'click_pageforward', '13982', '', '');return false"><img src="/images/public/jin-final.png" border="0" /></a>&nbsp;&nbsp;<input type="hidden" id="pageNo" name="pageNo" /><input type="hidden" value='13982' id="pagescount"/><input type="hidden" id="pageSize" name="pageSize" /><input type="hidden" id="clear" name="clear" /><script type='text/javascript'>document.onkeydown = function fnKeydownEnter(){if(document.activeElement.id=='EntryPageNo'){if(event.keyCode==13){jumppage('', 'entry_pageNo', '', '', '');return false}}}</script>
+						</p>
+					
+			</form>  
+
+	</div>
+	<p style="clear:both;"/>
+	
+	</div>			
+<!--版权-->
+	   
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<style type="text/css">
+.h-banq-1 { margin-right: auto; margin-left: auto; line-height: 32px; }
+.h-banq-1 a { text-decoration: none;  color: #717171;}
+.h-banq-2 { background-image: url(/images/indexnewimages/home-0.jpg); background-repeat: no-repeat; background-position: center; }
+</style>
+<div class="h-banq" style="width:1000px;margin:0 auto;">
+    <table class="h-banq-1" width="670" border="0" cellspacing="0" cellpadding="0">
+     <tr>
+     	 
+	        <td class="h-banq-2" >
+	        	<div align="center">
+		        	<a href="/newChange/newChangeAction!gsmd_list.dhtml?clear=true&flag_num=2">信用公示</a>　 
+			        <a href="/simple/dealSimpleAction!tran_page.dhtml?sysid=6da50d5a15b64abaafe54686f4539ace&chr_columnid=4f24d4ec-40e1-4864-b7fb-0a17a34591e8&styleFlag=zcfg&lm=zcfg&flag=1&clear=true&zcfgFlag=zcfgFlag">政策法规</a>　 
+			        <a href="/index/indexnew/bzjs/wzjj.jsp?flag=1">本站介绍</a>
+			        <a href="/jyxc/jyxcAction!tran_jyxc.dhtml" style="padding-left:15px;">问题反馈</a>
+		        </div>
+		     </td>
+		  
+        </tr>
+      <tr>
+        <td><div align="center">主办单位：北京市工商行政管理局&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术支持：010-82691768 (工作日:上午9:00-12:00 下午:13:30-17:30)</div></td>
+      </tr>
+    </table>
+  </div>
+  <div style="display:none;">
+<script src="http://s4.cnzz.com/z_stat.php?id=1257386840&web_id=1257386840" language="JavaScript"></script>
+</div>
+
+  <!--END-->
+	</body>
+</html>
+
+<script language="javascript">
+	document.onkeydown = fnKeydownok;
+	function fnKeydownok(){
+		if(event.keyCode==13){
+			jumppage('', 'entry_pageNo', '', '', '');
+		}
+	}
+</script>
